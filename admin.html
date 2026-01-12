@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel | THE 1 BILLION PIXELS PLUS</title>
+    <style>
+        body { background: #000a0a; color: white; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+        h2 { color: #00ffcc; border-bottom: 2px solid #00ffcc; padding-bottom: 10px; }
+        .request-card { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid #00ffcc; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 10px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .info span { display: block; font-size: 14px; margin-bottom: 5px; }
+        .approve-btn { 
+            background: #00ffcc; 
+            color: #000; 
+            border: none; 
+            padding: 10px 20px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border-radius: 5px; 
+        }
+        .approve-btn:hover { background: #fff; }
+        .preview-img { width: 50px; height: 50px; object-fit: cover; border: 1px solid #00ffcc; margin-right: 15px; }
+    </style>
+</head>
+<body>
+
+    <h2>PENDING APPROVALS</h2>
+    <div id="pending-list">Loading requests...</div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = { databaseURL: "https://m-legacy-5cf2b-default-rtdb.firebaseio.com/" };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // পেন্ডিং ডাটা রিড করা
+        db.ref('pending').on('value', snapshot => {
+            const list = document.getElementById('pending-list');
+            list.innerHTML = "";
+            const data = snapshot.val();
+
+            if (!data) {
+                list.innerHTML = "<p>No pending requests.</p>";
+                return;
+            }
+
+            Object.keys(data).forEach(slotId => {
+                const item = data[slotId];
+                const div = document.createElement('div');
+                div.className = "request-card";
+                div.innerHTML = `
+                    <div style="display:flex; align-items:center;">
+                        <img src="${item.imageUrl}" class="preview-img" onerror="this.src='https://via.placeholder.com/50'">
+                        <div class="info">
+                            <span><strong>Slot:</strong> ${slotId}</span>
+                            <span><strong>Company:</strong> ${item.companyName}</span>
+                        </div>
+                    </div>
+                    <button class="approve-btn" onclick="approve('${slotId}')">APPROVE & PUBLISH</button>
+                `;
+                list.appendChild(div);
+            });
+        });
+
+        // অ্যাপ্রুভ ফাংশন
+        function approve(slotId) {
+            db.ref('pending/' + slotId).once('value', snapshot => {
+                const data = snapshot.val();
+                if (data) {
+                    // মেইন 'pixels' নোডে ডাটা পাঠানো
+                    db.ref('pixels/' + slotId).set(data)
+                    .then(() => {
+                        // পেন্ডিং থেকে রিমুভ করা
+                        db.ref('pending/' + slotId).remove();
+                        alert("Slot " + slotId + " is now LIVE!");
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
