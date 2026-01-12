@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THE 1 BILLION PIXELS PLUS</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
@@ -14,7 +15,7 @@
         <div class="payment-info">
             <span class="pay-label">DIRECT PAYMENT:</span>
             <button class="pay-btn" onclick="copy('912221034')">BINANCE UID: 912221034 (COPY)</button>
-            <button class="pay-btn" onclick="copy('TTapBkTqrDnzHbWzek6wSBUTcJKFmR8Ws6')">USDT (TRC20): TTapB...Ws6 (COPY)</button>
+            <button class="pay-btn" onclick="copy('TTapBkTqrDnzHbWzek6wSBUTcJKFmR8Ws6')">USDT (TRC20) (COPY)</button>
         </div>
         <div class="order-link-area">
             <a href="order.html" class="highlight-buy-btn">ORDER YOUR PIXELS HERE</a>
@@ -23,7 +24,7 @@
 
     <div class="logo-row">
         <div class="logo-area">
-            <img src="https://i.ibb.co/XfXkY8f/logo.png" alt="Logo" class="main-logo">
+            <img src="https://i.ibb.co/971c53/p-logo.png" alt="Company Logo" class="main-logo"> 
             <h1 class="site-name">THE 1 BILLION PIXELS PLUS</h1>
         </div>
         <div class="stats-area">
@@ -59,13 +60,15 @@
     </div>
 </main>
 
-<footer>
-    <p>© 2026 THE 1 BILLION PIXELS PLUS. All rights reserved.</p>
+<footer class="classic-footer">
+    <p>THE 1 BILLION PIXELS PLUS HOMEPAGE © 2026 Kawsar Tew. All rights reserved.</p>
 </footer>
 
 <script src="script.js"></script>
 <script>
-    function copy(t){ navigator.clipboard.writeText(t).then(()=>alert("Copied: "+t)); }
+    function copy(t){ 
+        navigator.clipboard.writeText(t).then(() => alert("Copied: " + t)); 
+    }
 </script>
 </body>
 </html>
