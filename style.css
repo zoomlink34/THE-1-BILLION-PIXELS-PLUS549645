@@ -1,0 +1,42 @@
+body { margin: 0; background: #E0E0E0; font-family: Arial, sans-serif; }
+
+.classic-header { background: #FFFFFF; border-bottom: 2px solid #D4AF37; }
+
+/* টপ পেমেন্ট বার */
+.purchase-top-bar { 
+    background: #111; color: #fff; padding: 12px 20px; 
+    display: flex; justify-content: space-between; align-items: center; 
+}
+.pay-label { color: #FFCC00; font-weight: bold; margin-right: 15px; font-size: 13px; }
+.pay-btn { 
+    background: #222; border: 1px solid #D4AF37; color: #D4AF37; 
+    padding: 6px 12px; font-size: 11px; cursor: pointer; margin-right: 10px; 
+    border-radius: 4px; transition: 0.3s;
+}
+.pay-btn:hover { background: #D4AF37; color: #000; }
+
+.highlight-buy-btn { 
+    background: #CC0000; color: #fff; text-decoration: none; 
+    padding: 10px 20px; font-weight: bold; border-radius: 4px; 
+    border: 1px solid #fff; font-size: 13px;
+}
+
+/* লোগো সেকশন */
+.logo-row { max-width: 1100px; margin: 15px auto; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; }
+.main-logo { width: 55px; height: 55px; vertical-align: middle; margin-right: 15px; }
+.site-name { display: inline; font-size: 30px; color: #D4AF37; font-family: 'Times New Roman', serif; margin: 0; }
+
+.classic-nav { 
+    background: #FFCC00; border-top: 1px solid #000; border-bottom: 1px solid #000; 
+    padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; 
+    max-width: 1100px; margin: auto; 
+}
+.nav-links a { text-decoration: none; color: #000; font-weight: bold; margin-right: 15px; font-size: 14px; }
+.social-tray-classic img { width: 22px; margin-left: 10px; vertical-align: middle; filter: drop-shadow(0 0 2px rgba(0,0,0,0.2)); }
+
+/* ম্যাপ ফ্রেম */
+.content-frame { max-width: 1100px; margin: 20px auto; background: #fff; border: 1px solid #999; padding: 5px; box-shadow: 4px 4px 10px rgba(0,0,0,0.1); }
+#pixel-viewport { width: 100%; height: 580px; position: relative; overflow: hidden; background: #fff; }
+#canvas-mover { transform-origin: 0 0; cursor: grab; position: absolute; }
+
+footer { text-align: center; padding: 40px; font-size: 12px; color: #777; }
